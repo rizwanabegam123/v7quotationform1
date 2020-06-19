@@ -13,10 +13,15 @@ if(isset($_POST['submit'])&&($_POST['phone']))
 	$WebsiteRequiredin=$_POST['WebsiteRequiredin'];
 	$HostingServices=$_POST['HostingServices'];
 	$LogoDesign=$_POST['LogoDesign'];
-          
+
            
+           if(!preg_match("/^[6-9]\d{9}$/",$phone)){
+           	      return false;
+              }
+           else{
             $sql="insert into tbl_conv values('$id','$name','$email','$phone','$Websitetype','$WebpageRequired','$Contentwriting','$WebsiteRequiredin','$HostingServices','$LogoDesign')";
        
+            }
 	if(mysqli_query($conn,$sql)==True)
 	{
 		echo"<script>
@@ -31,7 +36,7 @@ if(isset($_POST['submit'])&&($_POST['phone']))
 	window.location.href='index.php';
 	</script>";
 
-   }
+     }
 }
 
 mysqli_close($conn);
